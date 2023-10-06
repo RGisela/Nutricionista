@@ -49,10 +49,11 @@ public class PacienteData {
 
 public void eliminarPaciente(int idPaciente) {
     try {
-        String sql = "DELETE pacientes WHERE idPaciente = ?";
+        String sql = "DELETE FROM paciente WHERE idPaciente = ?";
         PreparedStatement statement = con.prepareStatement(sql);
         statement.setInt(1, idPaciente);
         statement.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Alumno eliminado con exito");
     } catch (SQLException e) {
        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla paciente"+e.getMessage()) ;
     }
@@ -67,9 +68,10 @@ public void modificarPaciente (Paciente paciente) {
                 ps.setInt(2, paciente.getDni());
                 ps.setString(3, paciente.getDomicilio());
                 ps.setString(4, paciente.getTelefono());
+                ps.setInt(5, paciente.getIdPaciente());
                 int exito = ps.executeUpdate();
                 if (exito==1){
-                    JOptionPane.showMessageDialog(null, "Materia modificada");
+                    JOptionPane.showMessageDialog(null, "Paciente modificado");
                 }   
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente");
