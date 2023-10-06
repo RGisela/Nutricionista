@@ -33,14 +33,14 @@ public class Nutricionista {
 
       //MODIFICAR ALUMNO
       
-      PacienteData dat2 = new PacienteData();
-      Paciente paciente2 = new Paciente();
-      paciente2.setIdPaciente(2);
-      paciente2.setNombre("Roberto");
-      paciente2.setDni(12345);
-      paciente2.setDomicilio("Tierra del Fuego");
-      paciente2.setTelefono("12345");
-      dat2.modificarPaciente(paciente2);
+//      PacienteData dat2 = new PacienteData();
+//      Paciente paciente2 = new Paciente();
+//      paciente2.setIdPaciente(2);
+//      paciente2.setNombre("Roberto");
+//      paciente2.setDni(12345);
+//      paciente2.setDomicilio("Tierra del Fuego");
+//      paciente2.setTelefono("12345");
+//      dat2.modificarPaciente(paciente2);
     }
-    
+//    
 }
