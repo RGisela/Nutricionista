@@ -5,6 +5,9 @@
  */
 package nutricionista;
 
+import Data.PacienteData;
+import entidades.Paciente;
+
 /**
  *
  * @author gisela
@@ -16,7 +19,9 @@ public class Nutricionista {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hola");
+      Paciente paciente1 = new Paciente("Raul",9656,"Cordoba capital","3215646548");
+      PacienteData data = new PacienteData();
+      data.darAlta(paciente1);
     }
     
 }
