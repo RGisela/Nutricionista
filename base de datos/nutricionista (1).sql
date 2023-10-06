@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 00:58:42
+-- Tiempo de generación: 07-10-2023 a las 00:46:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -77,6 +77,15 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `paciente`
+--
+
+INSERT INTO `paciente` (`idPaciente`, `nombre`, `dni`, `domicilio`, `telefono`) VALUES
+(2, 'Roberto', 12345, 'Tierra del Fuego', '12345'),
+(4, 'Jose', 123765, 'Cordoba capital', '32156465'),
+(5, 'Maria', 123760, 'Posadas, Misiones', '32236465');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -90,7 +99,8 @@ ALTER TABLE `comida`
 -- Indices de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  ADD PRIMARY KEY (`idDieta`);
+  ADD PRIMARY KEY (`idDieta`),
+  ADD KEY `idPaciente` (`idPaciente`);
 
 --
 -- Indices de la tabla `dietacomida`
@@ -133,11 +143,17 @@ ALTER TABLE `dietacomida`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `dieta`
+--
+ALTER TABLE `dieta`
+  ADD CONSTRAINT `dieta_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
 
 --
 -- Filtros para la tabla `dietacomida`
@@ -145,12 +161,6 @@ ALTER TABLE `paciente`
 ALTER TABLE `dietacomida`
   ADD CONSTRAINT `dietacomida_ibfk_1` FOREIGN KEY (`idComida`) REFERENCES `comida` (`idComida`),
   ADD CONSTRAINT `dietacomida_ibfk_2` FOREIGN KEY (`idDieta`) REFERENCES `dieta` (`idDieta`);
-
---
--- Filtros para la tabla `paciente`
---
-ALTER TABLE `paciente`
-  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `dieta` (`idDieta`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
