@@ -58,4 +58,22 @@ public void eliminarPaciente(int idPaciente) {
     }
 }
 
+public void modificarPaciente (Paciente paciente) {
+    
+    String sql = "UPDATE paciente SET nombre = ?, dni = ?, domicilio = ?, telefono = ? WHERE idPaciente = ?";
+            try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, paciente.getNombre());
+                ps.setInt(2, paciente.getDni());
+                ps.setString(3, paciente.getDomicilio());
+                ps.setString(4, paciente.getTelefono());
+                int exito = ps.executeUpdate();
+                if (exito==1){
+                    JOptionPane.showMessageDialog(null, "Materia modificada");
+                }   
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente");
+            }
+}
+
 }
