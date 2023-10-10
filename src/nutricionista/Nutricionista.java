@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nutricionista;
 
 import Data.PacienteData;
 import entidades.Paciente;
 
-/**
- *
- * @author gisela
- */
+
 public class Nutricionista {
 
     /**
@@ -41,6 +34,13 @@ public class Nutricionista {
 //      paciente2.setDomicilio("Tierra del Fuego");
 //      paciente2.setTelefono("12345");
 //      dat2.modificarPaciente(paciente2);
+    
+    
     }
-//    
+//
+
+
+
+    
 }
+

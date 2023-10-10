@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Data;
 
 import entidades.Paciente;
@@ -15,10 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 
-/**
- *
- * @author pc
- */
+
 public class PacienteData {
         private Connection con = null;
 
@@ -58,7 +51,7 @@ public void eliminarPaciente(int idPaciente) {
        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla paciente"+e.getMessage()) ;
     }
 }
-
+            //modificar paciente
 public void modificarPaciente (Paciente paciente) {
     
     String sql = "UPDATE paciente SET nombre = ?, dni = ?, domicilio = ?, telefono = ? WHERE idPaciente = ?";
