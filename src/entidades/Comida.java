@@ -55,5 +55,9 @@ public class Comida {
     public void setIdComida(int idComida) {
         this.idComida = idComida;
     }
+
+    public void getCantCalorias(double nuevasCalorias) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
