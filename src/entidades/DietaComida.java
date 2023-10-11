@@ -15,7 +15,7 @@ public class DietaComida {
     private int id;
     private Comida comida;
     private Dieta dieta;
-
+    private Horario horario;
     public DietaComida() {
     }
 
