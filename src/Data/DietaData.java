@@ -23,7 +23,7 @@ public class DietaData {
     }
 
     public void agregarDieta(Dieta dieta) {
-        String sql = "INSERT INTO dieta (nombre, id_paciente, fecha_inicial, peso_inicial, peso_final, fecha_final) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO dieta (nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
@@ -40,7 +40,7 @@ public class DietaData {
     }
 
     public void modificarDieta(Dieta dieta) {
-        String sql = "UPDATE dieta SET nombre = ?, id_paciente = ?, fecha_inicial = ?, peso_inicial = ?, peso_final = ?, fecha_final = ? WHERE id_dieta = ?";
+        String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? WHERE idDieta = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
@@ -58,7 +58,7 @@ public class DietaData {
     }
 
     public void eliminarDieta(int idDieta) {
-        String sql = "DELETE FROM dieta WHERE id_dieta = ?";
+        String sql = "DELETE FROM dieta WHERE idDieta = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, idDieta);
@@ -76,13 +76,13 @@ public class DietaData {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int idDieta = rs.getInt("id_dieta");
+                int idDieta = rs.getInt("idDieta");
                 String nombre = rs.getString("nombre");
-                int idPaciente = rs.getInt("id_paciente");
-                LocalDate fechaInicial = rs.getDate("fecha_inicial").toLocalDate();
-                double pesoInicial = rs.getDouble("peso_inicial");
-                double pesoFinal = rs.getDouble("peso_final");
-                LocalDate fechaFinal = rs.getDate("fecha_final").toLocalDate();
+                int idPaciente = rs.getInt("idPaciente");
+                LocalDate fechaInicial = rs.getDate("fechaInicial").toLocalDate();
+                double pesoInicial = rs.getDouble("pesoInicial");
+                double pesoFinal = rs.getDouble("pesoFinal");
+                LocalDate fechaFinal = rs.getDate("fechaFinal").toLocalDate();
 
                 Paciente paciente = obtenerPacientePorId(idPaciente);
 
