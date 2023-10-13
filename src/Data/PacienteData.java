@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -68,6 +70,48 @@ public void modificarPaciente (Paciente paciente) {
                 }   
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente");
+            }
+}
+public List<Paciente> listarPacientes(){
+    List<Paciente> pacientes = new ArrayList<>();
+    String sql = "SELECT * FROM paciente";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()){
+                    int idPaciente = rs.getInt("idPaciente");
+                    String nombre = rs.getString("nombre");
+                    int dni = rs.getInt("dni");
+                    String domicilio = rs.getString("domicilio");
+                    String telefono = rs.getString("telefono");
+                    
+                    Paciente paciente = new Paciente();
+                    pacientes.add(paciente);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al listar los pacientes: " + ex.getMessage());
+            }
+            return pacientes;
+}
+public void buscarPaciente(int id){
+    String sql = "SELECT * FROM paciente WHERE idPaciente = ?";
+    Paciente paciente = null; 
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    paciente = new Paciente();
+                    paciente.setIdPaciente(id);
+                    paciente.setNombre(rs.getString("nombre"));
+                    paciente.setDni(rs.getInt("dni"));
+                    paciente.setDomicilio(rs.getString("domicilio"));
+                    paciente.setTelefono(rs.getString("telefono"));
+                }else{JOptionPane.showMessageDialog(null,"Ese paciente no existe" );
+                }ps.close();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + ex.getMessage());
             }
 }
 
