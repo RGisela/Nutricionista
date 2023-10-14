@@ -1,7 +1,9 @@
 
 package nutricionista;
 
+import Data.ComidaData;
 import Data.PacienteData;
+import entidades.Comida;
 import entidades.Paciente;
 
 
@@ -24,7 +26,7 @@ public class Nutricionista {
 //       PacienteData data1 = new PacienteData();
 //       data1.eliminarPaciente(3);
 
-      //MODIFICAR ALUMNO
+      //MODIFICAR Paciente
       
 //      PacienteData dat2 = new PacienteData();
 //      Paciente paciente2 = new Paciente();
@@ -35,7 +37,10 @@ public class Nutricionista {
 //      paciente2.setTelefono("12345");
 //      dat2.modificarPaciente(paciente2);
     
-    
+    //AGREGAR COMIDA
+    Comida comida1 = new Comida("Ensalada ","de lechuga y tomate ",200);
+    ComidaData cd = new ComidaData();
+    cd.agregarComida(comida1);
     }
 //
 

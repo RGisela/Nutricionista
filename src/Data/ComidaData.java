@@ -13,20 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author estudiante
  */
 
 public class ComidaData {
-    private Connection conexion;
 
-    public ComidaData(Connection conexion) {
-        this.conexion = conexion;
+    private Connection conexion = null;
+
+    public ComidaData() {
+        conexion = Conexion.getConnection();
     }
 
+
     public void agregarComida(Comida comida) {
-        String sql = "INSERT INTO comidas (nombre, detalle, cantCalorias) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO comida (nombre, detalle, cantCalorias) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, comida.getNombre());
@@ -67,22 +70,24 @@ public class ComidaData {
     }
 
     public Comida buscarComida(int id) {
-         Comida comida = null;
+        Comida comida = null;
         String sql = "SELECT * FROM comida WHERE idComida = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, "%" + id + "%");
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
-            comida = new Comida();
-            comida.setIdComida(id);
-            comida.setNombre(rs.getString("nombre"));
-            comida.setDetalle(rs.getString("detalle"));
-            comida.setCantCalorias(rs.getInt("cantCalorias"));
-            }else{JOptionPane.showMessageDialog(null,"Esa comida no existe" );
-        }ps.close();
-            
+
+            if (rs.next()) {
+                comida = new Comida();
+                comida.setIdComida(id);
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setCantCalorias(rs.getInt("cantCalorias"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa comida no existe");
+            }
+            ps.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar comidas: " + ex.getMessage());
         }
@@ -100,12 +105,10 @@ public class ComidaData {
                 String nombre = rs.getString("nombre");
                 String detalle = rs.getString("detalle");
                 int cantCalorias = rs.getInt("cantCalorias");
-               
-            } 
+
+            }
             ps.close();
-        } 
-       
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al listar las comidas: " + ex.getMessage());
         }
         return comidas;

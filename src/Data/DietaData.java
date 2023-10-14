@@ -16,10 +16,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class DietaData {
-    private Connection conexion;
+    private Connection conexion=null;
 
-    public DietaData(Connection conexion) {
-        this.conexion = conexion;
+  public DietaData(){
+        conexion = Conexion.getConnection();
+    
     }
 
     public void agregarDieta(Dieta dieta) {
