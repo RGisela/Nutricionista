@@ -4,10 +4,13 @@ package Data;
 import entidades.Dieta;
 import entidades.Comida;
 import entidades.DietaComida;
+import entidades.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,6 +24,7 @@ public class DietaComidaData {
     private Connection con=null;
     private DietaData dd=new DietaData();
    private ComidaData cd= new ComidaData();
+   private PacienteData pd=new PacienteData(); 
    
     public DietaComidaData  (){
     con = Conexion.getConnection();
@@ -87,7 +91,55 @@ try {
         JOptionPane.showMessageDialog(null,"Error al acceder a la tabla dieta comida"+ ex.getMessage());
     }
 }
+ public List<DietaComida> obtenerDietaComida(){
+     ArrayList<DietaComida> lista = new ArrayList<>();
+     String sql = "SELECT * FROM dietaComida"; 
+     
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                DietaComida dCom=new DietaComida();
+                dCom.setId(rs.getInt("idDietaComida"));
+                Paciente pac = pd.buscarPaciente(rs.getInt("idPaciente"));
+                Comida com = cd.buscarComida(rs.getInt("idComida"));
+                dCom.setComida(com);
+               
+                lista.add(dCom);  
+            }
+            ps.close();
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla dietaComida");
+        }
+     return lista;
+ }  
+ public List<DietaComida> obtenerDietaComidaPorPaciente(int idPaciente){
+     ArrayList<DietaComida> lista = new ArrayList<>();
+     String sql= "SELECT * FROM dietaComida WHERE idPaciente = ?";
+     
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idPaciente);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                
+                DietaComida dCom=new DietaComida();
+                dCom.setId(rs.getInt("idDietaComida"));
+                Paciente pac = pd.buscarPaciente(rs.getInt("idPaciente"));
+                Comida com = cd.buscarComida(rs.getInt("idComida"));
+                dCom.setComida(com);
+               
+                lista.add(dCom);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla dietaComida");
+        }
+        return lista;
+ } 
 
-   
-   
 }
