@@ -38,14 +38,14 @@ public class Nutricionista {
 //      dat2.modificarPaciente(paciente2);
     
     //AGREGAR COMIDA
-    Comida comida1 = new Comida("Ensalada ","de lechuga y tomate ",200);
-    ComidaData cd = new ComidaData();
-    cd.agregarComida(comida1);
-    }
+//    Comida comida1 = new Comida("Ensalada ","de lechuga y tomate ",200);
+//    ComidaData cd = new ComidaData();
+//    cd.agregarComida(comida1);
+//    
 //
 
 
 
-    
+    }
 }
 

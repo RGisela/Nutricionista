@@ -67,17 +67,27 @@ try {
        
    }
    
-   public void modificarDietaComida(int idPaciente, int idComida){
-       String sql="UPDATE dietacomida SET idPaciente = ?, idComida = ? WHERE idDietaComida = ?";
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1,idPaciente);
-            ps.setInt(2,idComida);
-            ps.setInt(3,idDietaComida);
-        } catch (SQLException ex) {
-            Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
+  public void modificarDietaComida(int idPaciente, int idComida, int idDietaComida) {
+    String sql = "UPDATE dietacomida SET idPaciente = ?, idComida = ? WHERE idDietaComida = ?";
+    
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPaciente);
+        ps.setInt(2, idComida);
+        ps.setInt(3, idDietaComida);
+        
+        int fila = ps.executeUpdate();
+        
+        if (fila > 0) {
+            System.out.println("La fila se actualizó correctamente.");
+        } else {
+            System.out.println("La fila no se encontró o no se actualizó.");
         }
-   }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null,"Error al acceder a la tabla dieta comida"+ ex.getMessage());
+    }
+}
+
    
    
 }
