@@ -5,17 +5,21 @@
  */
 package Vistas;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author gisela
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaPrincipal
-     */
+   private JDesktopPane escritorio;
+    
     public VistaPrincipal() {
         initComponents();
+        escritorio= new JDesktopPane();//para luego ser llamado
+        this.setContentPane(escritorio);
+        //escritorio.add(this.button1)//por si quiero que se vea el boton
     }
 
     /**
@@ -27,14 +31,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jmiComida = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmiGestionDieta = new javax.swing.JMenu();
+        jmItemDieta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -42,23 +45,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(0, 153, 51));
-        jDesktopPane1.setForeground(new java.awt.Color(0, 153, 0));
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
-        );
-
         jMenu3.setText("Paciente");
 
-        jMenuItem1.setText("Agregar");
+        jMenuItem1.setText("Gestión Paciente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -68,29 +57,34 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Comida");
+        jmiComida.setText("Comida");
+        jmiComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiComidaActionPerformed(evt);
+            }
+        });
 
-        jMenuItem2.setText("Agregar");
+        jMenuItem2.setText("Gestion Comida");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jmiComida.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jmiComida);
 
-        jMenu1.setText("Dieta");
+        jmiGestionDieta.setText("Dieta");
 
-        jMenuItem3.setText("Agregar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jmItemDieta.setText("Gestión Dieta");
+        jmItemDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jmItemDietaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jmiGestionDieta.add(jmItemDieta);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmiGestionDieta);
 
         jMenu2.setText("Administracion");
 
@@ -117,11 +111,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -136,20 +130,29 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-//          vistaejemplo ventanaPaciente = new vistaejemplo();
-//    ventanaPaciente.setVisible(true);
+           ComidaView comida = new ComidaView();
+        escritorio.add(comida);//agrego la ventana al escritorio(JDesktopPane)
+        comida.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jmItemDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmItemDietaActionPerformed
         // TODO add your handling code here:
-        ComidaView comida =new ComidaView();
-        comida.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        DietaView dieta =new DietaView();
+        escritorio.add(dieta);
+        dieta.setVisible(true);
+    }//GEN-LAST:event_jmItemDietaActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jmiComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiComidaActionPerformed
+        
+//        ComidaView comida = new ComidaView();
+//        escritorio.add(comida);//agrego la ventana al escritorio(JDesktopPane)
+//        comida.setVisible(true);
+    }//GEN-LAST:event_jmiComidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,17 +190,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jmItemDieta;
+    private javax.swing.JMenu jmiComida;
+    private javax.swing.JMenu jmiGestionDieta;
     // End of variables declaration//GEN-END:variables
 }

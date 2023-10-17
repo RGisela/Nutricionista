@@ -299,7 +299,7 @@ public class PacienteVista extends javax.swing.JFrame {
         jtNombre.setText(pacienteActual.getNombre());
         jtDomicilio.setText(pacienteActual.getDomicilio());
         jtTelefono.setText(pacienteActual.getTelefono());
-        jtDni.setText(String.valueOf(pacienteActual.getDni()));
+        jtDni.setText(pacienteActual.getDni()+"");//O podria ponerle String.ValueOf
         /* convierte el valor del entero (dni) a una cadena (String) 
         para que sea compatible con el método setText del campo de texto jtDni*/
         }
