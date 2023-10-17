@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Data;
 
 import entidades.Dieta;
@@ -12,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
 
@@ -49,4 +47,37 @@ try {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla dietaComida");
         }
 } 
+   
+   public void borrarDietaComida (int idPaciente,int idComida){
+       String sql="delete FROM dietacomida WHERE idPaciente = ? AND idComida = ?";
+       try {
+       PreparedStatement ps=con.prepareStatement(sql);
+       ps.setInt(1,idPaciente);
+       ps.setInt(2,idComida);
+       int filas = ps.executeUpdate();
+       if (filas>0){
+           JOptionPane.showMessageDialog(null,"ComidaData borrada");
+                   }
+       ps.close();
+       
+       }catch (SQLException ex){
+       JOptionPane.showMessageDialog(null,"Error al acceder a la tabla dietacomida"+ex.getMessage());
+       
+       }
+       
+   }
+   
+   public void modificarDietaComida(int idPaciente, int idComida){
+       String sql="UPDATE dietacomida SET idPaciente = ?, idComida = ? WHERE idDietaComida = ?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,idPaciente);
+            ps.setInt(2,idComida);
+            ps.setInt(3,idDietaComida);
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+   
+   
 }

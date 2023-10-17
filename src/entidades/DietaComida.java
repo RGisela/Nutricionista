@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.util.logging.Logger;
 
-/**
- *
- * @author pc
- */
+
 public class DietaComida {
     private int id;
     private Comida comida;
@@ -52,6 +45,21 @@ public class DietaComida {
 
     public void setDieta(Dieta dieta) {
         this.dieta = dieta;
+    }
+
+    public DietaComida(int id, Comida comida, Dieta dieta, Horario horario) {
+        this.id = id;
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horario;
+    }
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
     }
     
 }
