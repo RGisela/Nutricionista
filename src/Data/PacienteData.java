@@ -93,7 +93,7 @@ public List<Paciente> listarPacientes(){
             }
             return pacientes;
 }
-public void buscarPaciente(int id){
+public Paciente buscarPaciente(int id){
     String sql = "SELECT * FROM paciente WHERE idPaciente = ?";
     Paciente paciente = null; 
             try {
@@ -113,6 +113,7 @@ public void buscarPaciente(int id){
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + ex.getMessage());
             }
+            return paciente;
 }
 
 }

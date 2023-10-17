@@ -38,6 +38,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Paciente");
 
         jMenuItem1.setText("Agregar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
@@ -65,6 +71,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu4.setText("Comida");
 
         jMenuItem2.setText("Agregar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem2);
 
         jMenuBar1.add(jMenu4);
@@ -72,6 +83,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Dieta");
 
         jMenuItem3.setText("Agregar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -84,6 +100,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Salir");
+
+        jMenuItem5.setText("Salir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem5);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -101,6 +126,30 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.out.println("Haciendo clic en jmiAgregarPaciente");
+    PacienteVista ventanaPaciente = new PacienteVista();
+    ventanaPaciente.setVisible(true);
+    
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+//          vistaejemplo ventanaPaciente = new vistaejemplo();
+//    ventanaPaciente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        ComidaView comida =new ComidaView();
+        comida.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,5 +198,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

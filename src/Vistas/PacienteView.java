@@ -43,8 +43,6 @@ public class PacienteView extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        jDesktopPane1.setBackground(new java.awt.Color(0, 0, 0));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("PACIENTE");
