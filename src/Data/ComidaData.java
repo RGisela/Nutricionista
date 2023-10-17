@@ -58,7 +58,7 @@ public class ComidaData {
     }
 
     public void eliminarComida(int idComida) {
-        String sql = "DELETE FROM comidas WHERE idComida = ?";
+        String sql = "DELETE FROM comida WHERE idComida = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, idComida);
@@ -74,7 +74,7 @@ public class ComidaData {
         String sql = "SELECT * FROM comida WHERE idComida = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setString(1, "%" + id + "%");
+            ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
