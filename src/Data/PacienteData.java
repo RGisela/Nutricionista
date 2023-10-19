@@ -22,6 +22,7 @@ public class PacienteData {
     }
     public void darAlta(Paciente paciente){
     String sql= "INSERT INTO paciente(nombre,dni,domicilio,telefono) VALUES(?,?,?,?)";
+    String sql2 ="INSERT INTO historial(idPaciente, peso, fechaRegistro VALUES(?,?,? )";
             try {
                 PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, paciente.getNombre());
@@ -35,6 +36,11 @@ public class PacienteData {
                 JOptionPane.showMessageDialog(null,"Paciente añadido con exito :) ");
                 }
                 ps.close();
+                
+                PreparedStatement ps2 = con.prepareStatement(sql2,Statement.RETURN_GENERATED_KEYS);
+                ps2.setInt(1, paciente.getIdPaciente());
+                ps2.setDouble(2, );
+                ps2.close();
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla paciente"+ex.getMessage());
             }
