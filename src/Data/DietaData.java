@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 
 public class DietaData {
     private Connection conexion=null;
@@ -26,7 +27,7 @@ public class DietaData {
     public void agregarDieta(Dieta dieta) {
         String sql = "INSERT INTO dieta (nombre, idPaciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal) VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = conexion.prepareStatement(sql);
+            PreparedStatement ps = conexion.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, dieta.getNombre());
             ps.setInt(2, dieta.getPaciente().getIdPaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicial()));
@@ -34,9 +35,14 @@ public class DietaData {
             ps.setDouble(5, dieta.getPesoFinal());
             ps.setDate(6, Date.valueOf(dieta.getFechaFinal()));
             ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next()){
+            dieta.setIdDieta(rs.getInt(1));
             JOptionPane.showMessageDialog(null, "Dieta añadida con éxito :)");
+            }
+            ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla dieta: " + ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error al acceder a la tabla dieta: " + ex.getMessage());
         }
     }
 

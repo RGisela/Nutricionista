@@ -115,5 +115,27 @@ public Paciente buscarPaciente(int id){
             }
             return paciente;
 }
+public Paciente buscarPacientePorDni(int dni){
+    String sql = "SELECT * FROM paciente WHERE dni = ?";
+    Paciente paciente = null; 
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, dni);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    paciente = new Paciente();
+                    paciente.setIdPaciente(rs.getInt("idPaciente"));
+                    paciente.setNombre(rs.getString("nombre"));
+                    paciente.setDni(rs.getInt("dni"));
+                    paciente.setDomicilio(rs.getString("domicilio"));
+                    paciente.setTelefono(rs.getString("telefono"));
+                }else{JOptionPane.showMessageDialog(null,"Ese paciente no existe" );
+                }ps.close();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + ex.getMessage());
+            }
+            return paciente;
+}
 
 }
