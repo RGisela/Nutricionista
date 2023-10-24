@@ -31,8 +31,6 @@ public class DietaData {
             ps.setString(1, dieta.getNombre());
             ps.setInt(2, dieta.getPaciente().getIdPaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicial()));
-            ps.setDouble(4, dieta.getPesoInicial());
-            ps.setDouble(5, dieta.getPesoFinal());
             ps.setDate(6, Date.valueOf(dieta.getFechaFinal()));
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -53,8 +51,6 @@ public class DietaData {
             ps.setString(1, dieta.getNombre());
             ps.setInt(2, dieta.getPaciente().getIdPaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicial()));
-            ps.setDouble(4, dieta.getPesoInicial());
-            ps.setDouble(5, dieta.getPesoFinal());
             ps.setDate(6, Date.valueOf(dieta.getFechaFinal()));
             ps.setInt(7, dieta.getIdDieta());
             ps.executeUpdate();
@@ -87,13 +83,11 @@ public class DietaData {
                 String nombre = rs.getString("nombre");
                 int idPaciente = rs.getInt("idPaciente");
                 LocalDate fechaInicial = rs.getDate("fechaInicial").toLocalDate();
-                double pesoInicial = rs.getDouble("pesoInicial");
-                double pesoFinal = rs.getDouble("pesoFinal");
                 LocalDate fechaFinal = rs.getDate("fechaFinal").toLocalDate();
 
                 Paciente paciente = obtenerPacientePorId(idPaciente);
 
-                Dieta dieta = new Dieta(idDieta, nombre, paciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal);
+                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, fechaFinal, idDieta);
                 dietas.add(dieta);
             }
         } catch (SQLException ex) {

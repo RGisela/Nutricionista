@@ -8,35 +8,25 @@ public class Dieta {
     private String nombre;
     private Paciente paciente;
     private LocalDate fechaInicial;
-    private double pesoInicial;
-    private double pesoFinal;
     private LocalDate fechaFinal;
     private int idDieta;
 
     public Dieta() {
     }
 
-    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal, int idDieta) {
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, LocalDate fechaFinal, int idDieta) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicial = fechaInicial;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
         this.fechaFinal = fechaFinal;
         this.idDieta = idDieta;
     }
 
-    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal) {
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, LocalDate fechaFinal) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicial = fechaInicial;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
         this.fechaFinal = fechaFinal;
-    }
-
-    public Dieta(int idDieta, String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNombre() {
@@ -61,22 +51,6 @@ public class Dieta {
 
     public void setFechaInicial(LocalDate fechaInicial) {
         this.fechaInicial = fechaInicial;
-    }
-
-    public double getPesoInicial() {
-        return pesoInicial;
-    }
-
-    public void setPesoInicial(double pesoInicial) {
-        this.pesoInicial = pesoInicial;
-    }
-
-    public double getPesoFinal() {
-        return pesoFinal;
-    }
-
-    public void setPesoFinal(double pesoFinal) {
-        this.pesoFinal = pesoFinal;
     }
 
     public LocalDate getFechaFinal() {
