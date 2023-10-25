@@ -136,7 +136,6 @@ public class PacienteVista extends javax.swing.JFrame {
 
         jLabel6.setText("Peso:");
 
-        jtPeso.setText("jTextField1");
         jtPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtPesoActionPerformed(evt);
