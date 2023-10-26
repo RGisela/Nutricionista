@@ -44,8 +44,12 @@ public class Nutricionista {
 //    
 //
 
+PacienteData pd = new PacienteData();
 
-
+for(Paciente pd1 : pd.listarPacientes()){
+    System.out.println(pd1.getNombre());
+    System.out.println(pd1.getDni());
+    System.out.println("--------");
     }
 }
-
+}

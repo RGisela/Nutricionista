@@ -14,6 +14,11 @@ public class Paciente {
     public Paciente() {
     }
 
+    public Paciente(String nombre, int dni) {
+        this.nombre = nombre;
+        this.dni = dni;
+    }
+
     public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente, double pesoInicial, double pesoFinal) {
         this.nombre = nombre;
         this.dni = dni;
@@ -88,5 +93,9 @@ public class Paciente {
     public void setPesoFinal(double pesoFinal) {
         this.pesoFinal = pesoFinal;
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre + "-" + dni;
+    }
 }

@@ -92,27 +92,28 @@ public class PacienteData {
         }
     }
 
-    public List<Paciente> listarPacientes() {
-        List<Paciente> pacientes = new ArrayList<>();
-        String sql = "SELECT * FROM paciente";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int idPaciente = rs.getInt("idPaciente");
-                String nombre = rs.getString("nombre");
-                int dni = rs.getInt("dni");
-                String domicilio = rs.getString("domicilio");
-                String telefono = rs.getString("telefono");
+   public List<Paciente> listarPacientes() {
+    List<Paciente> pacientes = new ArrayList<>();
+    String sql = "SELECT nombre,dni FROM paciente";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String nombre = rs.getString("nombre");
+            int dni = rs.getInt("dni");
+         
 
-                Paciente paciente = new Paciente();
-                pacientes.add(paciente);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al listar los pacientes: " + ex.getMessage());
+            // Crea un objeto Paciente y asigna los valores de la base de datos
+            Paciente paciente = new Paciente();
+            paciente.setNombre(nombre);
+            paciente.setDni(dni);
+            pacientes.add(paciente);
         }
-        return pacientes;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al listar los pacientes: " + ex.getMessage());
     }
+    return pacientes;
+}
 
     public Paciente buscarPaciente(int id) {
         String sql = "SELECT * FROM paciente WHERE idPaciente = ?";
