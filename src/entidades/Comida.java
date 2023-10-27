@@ -28,6 +28,11 @@ public class Comida {
         return nombre;
     }
 
+    public Comida(String nombre, int idComida) {
+        this.nombre = nombre;
+        this.idComida = idComida;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -56,8 +61,11 @@ public class Comida {
         this.idComida = idComida;
     }
 
-    public void getCantCalorias(double nuevasCalorias) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    public String toString() {
+        return "Comida{" + "nombre=" + nombre + ", detalle=" + detalle + ", cantCalorias=" + cantCalorias + ", idComida=" + idComida + '}';
     }
+
+  
     
 }

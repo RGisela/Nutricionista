@@ -29,6 +29,11 @@ public class Dieta {
         this.fechaFinal = fechaFinal;
     }
 
+    public Dieta(String nombre, int idDieta) {
+        this.nombre = nombre;
+        this.idDieta = idDieta;
+    }
+
     public String getNombre() {
         return nombre;
     }

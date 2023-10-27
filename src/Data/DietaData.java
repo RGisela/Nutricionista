@@ -77,6 +77,7 @@ public class DietaData {
         String sql = "SELECT * FROM dieta";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int idDieta = rs.getInt("idDieta");
@@ -100,4 +101,29 @@ public class DietaData {
         return null;
         
     }
+    public List<Dieta> listarDietasTerminadas(LocalDate fechaFin) {
+        List<Dieta> dietas = new ArrayList<>();
+        String sql = "SELECT * FROM dieta WHERE fechaFinal=?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(fechaFin));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idDieta = rs.getInt("idDieta");
+                String nombre = rs.getString("nombre");
+                int idPaciente = rs.getInt("idPaciente");
+                LocalDate fechaInicial = rs.getDate("fechaInicial").toLocalDate();
+                LocalDate fechaFinal = rs.getDate("fechaFinal").toLocalDate();
+
+                Paciente paciente = obtenerPacientePorId(idPaciente);
+
+                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, fechaFinal, idDieta);
+                dietas.add(dieta);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al listar las dietas: " + ex.getMessage());
+        }
+        return dietas;
+    }
+
 }

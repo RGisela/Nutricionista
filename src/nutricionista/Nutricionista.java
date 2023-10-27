@@ -2,9 +2,15 @@
 package nutricionista;
 
 import Data.ComidaData;
+import Data.DietaComidaData;
+import Data.DietaData;
 import Data.PacienteData;
 import entidades.Comida;
+import entidades.Dieta;
+import entidades.DietaComida;
 import entidades.Paciente;
+import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class Nutricionista {
@@ -44,12 +50,24 @@ public class Nutricionista {
 //    
 //
 
-PacienteData pd = new PacienteData();
+//PacienteData pd = new PacienteData();
+//
+//for(Paciente pd1 : pd.listarPacientes()){
+//    System.out.println(pd1.getNombre());
+//    System.out.println(pd1.getDni());
+//    System.out.println("--------");
+//    }
 
-for(Paciente pd1 : pd.listarPacientes()){
-    System.out.println(pd1.getNombre());
-    System.out.println(pd1.getDni());
-    System.out.println("--------");
+//DietaData dd = new DietaData();
+//LocalDate fecha1= LocalDate.parse("2023-10-29"); 
+//for(Dieta dieta1 : dd.listarDietasTerminadas(fecha1)){
+//    System.out.println(dieta1.getNombre());
+//  System.out.println(dieta1.getFechaFinal());
+//    }
+DietaComidaData dcd = new DietaComidaData();
+//String lc="ensalada";
+for(DietaComida dieta1 : dcd.listarComidasEnDietas("Manzana")){
+    System.out.println(dieta1.getComida().getNombre());
     }
-}
+    }
 }
