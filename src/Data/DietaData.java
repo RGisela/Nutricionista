@@ -2,6 +2,7 @@
 package Data;
 
 
+import entidades.Comida;
 import entidades.Dieta;
 import entidades.Paciente;
 import java.sql.Connection;
@@ -124,6 +125,28 @@ public class DietaData {
             JOptionPane.showMessageDialog(null, "Error al listar las dietas: " + ex.getMessage());
         }
         return dietas;
+    }
+    public Dieta buscarDieta(int id) {
+        Dieta dieta = null;
+        String sql = "SELECT * FROM dieta WHERE idDieta = ?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                dieta = new Dieta();
+                dieta.setIdDieta(id);
+                dieta.setNombre(rs.getString("nombre"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Esa dieta no existe");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar dietas: " + ex.getMessage());
+        }
+        return dieta;
     }
 
 }

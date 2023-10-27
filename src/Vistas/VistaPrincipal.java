@@ -89,6 +89,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Administracion");
 
         jMenuItem4.setText("Manejo de DietaComida");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -154,6 +159,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
 //        comida.setVisible(true);
     }//GEN-LAST:event_jmiComidaActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        DietaComidaView dietaComida = new DietaComidaView();
+        escritorio.add(dietaComida);//agrego la ventana al escritorio(JDesktopPane)
+        dietaComida.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
