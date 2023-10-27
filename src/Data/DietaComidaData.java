@@ -172,6 +172,32 @@ public class DietaComidaData {
     }
     return comidasEnDieta;
 }
+public List<Comida> obtenerComidasEnDietaPorNombre(String nombreDieta) {
+    List<Comida> comidasEnDieta = new ArrayList<>();
+    String sql = "SELECT c.idComida, c.nombre FROM dieta d " +
+                 "JOIN dietacomida dc ON d.idDieta = dc.idDieta " +
+                 "JOIN comida c ON dc.idComida = c.idComida " +
+                 "WHERE d.nombre = ?";
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, nombreDieta);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int comidaId = rs.getInt("idComida");
+            String comidaNombre = rs.getString("nombre");
+
+            // Crea instancias de Comida
+            Comida comida = new Comida(comidaNombre,comidaId);
+
+            comidasEnDieta.add(comida);
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener las comidas de la dieta: " + ex.getMessage());
+    }
+
+    return comidasEnDieta;
+}
 
 
 }

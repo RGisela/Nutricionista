@@ -64,10 +64,15 @@ public class Nutricionista {
 //    System.out.println(dieta1.getNombre());
 //  System.out.println(dieta1.getFechaFinal());
 //    }
-DietaComidaData dcd = new DietaComidaData();
-//String lc="ensalada";
-for(DietaComida dieta1 : dcd.listarComidasEnDietas("Manzana")){
-    System.out.println(dieta1.getComida().getNombre());
-    }
+
+//DietaComidaData dcd = new DietaComidaData();
+//for(DietaComida dieta1 : dcd.listarComidasEnDietas("Manzana")){
+//    System.out.println(dieta1.getComida().getNombre());
+//    }
+    
+//DietaComidaData dcd2 = new DietaComidaData();
+//for(Comida dieta1 : dcd2.obtenerComidasEnDietaPorNombre("Dieta falsa")){
+//    System.out.println(dieta1.getNombre());
+//    }
     }
 }
