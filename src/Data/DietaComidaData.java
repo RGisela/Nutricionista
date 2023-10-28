@@ -5,6 +5,7 @@ import entidades.Comida;
 import entidades.DietaComida;
 import entidades.Paciente;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -102,7 +103,7 @@ public class DietaComidaData {
 
                 DietaComida dCom = new DietaComida();
                 dCom.setId(rs.getInt("idDietaComida"));
-                Paciente pac = pd.buscarPaciente(rs.getInt("idPaciente"));
+                Paciente pac = pd.buscarPacientePorId(rs.getInt("idPaciente"));
                 Comida com = cd.buscarComida(rs.getInt("idComida"));
                 dCom.setComida(com);
 
@@ -128,7 +129,7 @@ public class DietaComidaData {
 
                 DietaComida dCom = new DietaComida();
                 dCom.setId(rs.getInt("idDietaComida"));
-                Paciente pac = pd.buscarPaciente(rs.getInt("idPaciente"));
+                Paciente pac = pd.buscarPacientePorId(rs.getInt("idPaciente"));
                 Comida com = cd.buscarComida(rs.getInt("idComida"));
                 dCom.setComida(com);
 
@@ -198,6 +199,5 @@ public List<Comida> obtenerComidasEnDietaPorNombre(String nombreDieta) {
 
     return comidasEnDieta;
 }
-
 
 }

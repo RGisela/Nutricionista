@@ -22,9 +22,9 @@ public class PacienteData {
         con = Conexion.getConnection();
     }
 
-    public void darAlta(Paciente paciente, double peso, LocalDate fecha) {
-        String sql = "INSERT INTO paciente (nombre, dni, domicilio, telefono, peso) VALUES (?,?,?,?,?)";
-        String sql2 = "INSERT INTO historial (idPaciente, peso, fechaRegistro) VALUES (?,?,?)";
+    public void darAlta(Paciente paciente, LocalDate fecha) {
+        String sql = "INSERT INTO paciente (nombre, dni, domicilio, telefono) VALUES (?,?,?,?,?)";
+        String sql2 = "INSERT INTO historial (idPaciente, fechaRegistro) VALUES (?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,7 +32,6 @@ public class PacienteData {
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono());
-            ps.setDouble(5, peso);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -44,7 +43,6 @@ public class PacienteData {
 
             PreparedStatement ps2 = con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
             ps2.setInt(1, paciente.getIdPaciente());
-            ps2.setDouble(2, peso);
             ps2.setDate(3, Date.valueOf(fecha));
             ps2.executeUpdate();
 
@@ -115,7 +113,7 @@ public class PacienteData {
     return pacientes;
 }
 
-    public Paciente buscarPaciente(int id) {
+    public Paciente buscarPacientePorId (int id) {
         String sql = "SELECT * FROM paciente WHERE idPaciente = ?";
         Paciente paciente = null;
         try {
@@ -123,15 +121,15 @@ public class PacienteData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                paciente = new Paciente();
-                paciente.setIdPaciente(id);
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setTelefono(rs.getString("telefono"));
-            } else {
-                JOptionPane.showMessageDialog(null, "Ese paciente no existe");
-            }
+            int idPaciente = rs.getInt("idPaciente");
+            String nombre = rs.getString("nombre");
+            int dni = rs.getInt("dni");
+            String domicilio = rs.getString("domicilio");
+            String telefono = rs.getString("telefono");
+            paciente = new Paciente(nombre, dni, domicilio, telefono, idPaciente);
+            
+            } 
+                
             ps.close();
 
         } catch (SQLException ex) {

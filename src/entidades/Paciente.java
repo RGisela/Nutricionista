@@ -8,8 +8,7 @@ public class Paciente {
     private String domicilio;
     private String telefono;
     private int idPaciente;
-    private double pesoInicial;
-    private double pesoFinal;
+   
 
     public Paciente() {
     }
@@ -25,8 +24,6 @@ public class Paciente {
         this.domicilio = domicilio;
         this.telefono = telefono;
         this.idPaciente = idPaciente;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
     }
 
     public Paciente(String nombre, int dni, String domicilio, String telefono) {
@@ -34,8 +31,15 @@ public class Paciente {
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.pesoInicial = pesoInicial;
-        this.pesoFinal = pesoFinal;
+        
+    }
+
+    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+        this.idPaciente = idPaciente;
     }
 
     public String getNombre() {
@@ -78,21 +82,6 @@ public class Paciente {
         this.idPaciente = idPaciente;
     }
 
-    public double getPesoInicial() {
-        return pesoInicial;
-    }
-
-    public double getPesoFinal() {
-        return pesoFinal;
-    }
-
-    public void setPesoInicial(double pesoInicial) {
-        this.pesoInicial = pesoInicial;
-    }
-
-    public void setPesoFinal(double pesoFinal) {
-        this.pesoFinal = pesoFinal;
-    }
 
     @Override
     public String toString() {

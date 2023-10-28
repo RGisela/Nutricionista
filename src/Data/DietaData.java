@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import Data.PacienteData;
 
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
@@ -46,7 +47,8 @@ public class DietaData {
     }
 
     public void modificarDieta(Dieta dieta) {
-        String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? WHERE idDieta = ?";
+        String sql = "UPDATE dieta SET nombre = ?, idPaciente = ?, fechaInicial = ?, pesoInicial = ?, pesoFinal = ?, fechaFinal = ? "
+                + "WHERE idDieta = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
@@ -61,13 +63,17 @@ public class DietaData {
         }
     }
 
-    public void eliminarDieta(int idDieta) {
-        String sql = "DELETE FROM dieta WHERE idDieta = ?";
+    public void eliminarDieta(String nombreDeDieta) {
+        String sql = "DELETE FROM dieta WHERE nombre = ?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idDieta);
-            ps.executeUpdate();
+            ps.setString(1, nombreDeDieta);
+            int exito=ps.executeUpdate();
+            if(exito==1){
+                
             JOptionPane.showMessageDialog(null, "Dieta eliminada con éxito :)");
+            }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al eliminar la dieta: " + ex.getMessage());
         }
@@ -85,11 +91,14 @@ public class DietaData {
                 String nombre = rs.getString("nombre");
                 int idPaciente = rs.getInt("idPaciente");
                 LocalDate fechaInicial = rs.getDate("fechaInicial").toLocalDate();
+                double pesoInicial = rs.getDouble("pesoInicial");
+                double pesoFinal = rs.getDouble("pesoFinal");
                 LocalDate fechaFinal = rs.getDate("fechaFinal").toLocalDate();
+                PacienteData pd = new PacienteData();
 
-                Paciente paciente = obtenerPacientePorId(idPaciente);
+                Paciente paciente = pd.buscarPacientePorId(idPaciente);
 
-                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, fechaFinal, idDieta);
+                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, pesoInicial, pesoFinal, fechaFinal, idDieta);
                 dietas.add(dieta);
             }
         } catch (SQLException ex) {
@@ -97,11 +106,7 @@ public class DietaData {
         }
         return dietas;
     }
-
-    private Paciente obtenerPacientePorId(int idPaciente) {
-        return null;
-        
-    }
+    
     public List<Dieta> listarDietasTerminadas(LocalDate fechaFin) {
         List<Dieta> dietas = new ArrayList<>();
         String sql = "SELECT * FROM dieta WHERE fechaFinal=?";
@@ -114,11 +119,13 @@ public class DietaData {
                 String nombre = rs.getString("nombre");
                 int idPaciente = rs.getInt("idPaciente");
                 LocalDate fechaInicial = rs.getDate("fechaInicial").toLocalDate();
-                LocalDate fechaFinal = rs.getDate("fechaFinal").toLocalDate();
+                double pesoInicial = rs.getDouble("pesoInicial");
+                double pesoFinal = rs.getDouble("pesoFinal");
+                PacienteData pd = new PacienteData();
 
-                Paciente paciente = obtenerPacientePorId(idPaciente);
+                Paciente paciente = pd.buscarPacientePorId(idPaciente);
 
-                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, fechaFinal, idDieta);
+                Dieta dieta = new Dieta(nombre, paciente, fechaInicial, pesoInicial, pesoFinal, fechaFin, idDieta);
                 dietas.add(dieta);
             }
         } catch (SQLException ex) {
@@ -126,6 +133,7 @@ public class DietaData {
         }
         return dietas;
     }
+    
     public Dieta buscarDieta(int id) {
         Dieta dieta = null;
         String sql = "SELECT * FROM dieta WHERE idDieta = ?";
@@ -148,5 +156,32 @@ public class DietaData {
         }
         return dieta;
     }
+    public Dieta obtenerDietaPorNombre(String nombreDieta) {
+    Dieta dieta = null;
+    String sql = "Select * FROM dieta WHERE nombre = ?";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setString(1, nombreDieta);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            dieta = new Dieta();
+            dieta.setIdDieta(rs.getInt("idDieta"));
+            dieta.setNombre(rs.getString("nombre"));
+            Paciente paciente = new Paciente();
+            paciente.setIdPaciente(rs.getInt("idPaciente"));
+           
+            dieta.setPaciente(paciente);
+            dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+            dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+            dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+            dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+            
+
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener las comidas de la dieta: " + ex.getMessage());
+    }
+    return dieta;
+}
 
 }

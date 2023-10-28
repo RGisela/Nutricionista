@@ -8,19 +8,22 @@ public class DietaComida {
     private int id;
     private Comida comida;
     private Dieta dieta;
+    private double porciones;
     private Horario horario;
     public DietaComida() {
     }
 
-    public DietaComida(int id, Comida comida, Dieta dieta) {
+    public DietaComida(int id, Comida comida, Dieta dieta, double porciones) {
         this.id = id;
         this.comida = comida;
         this.dieta = dieta;
+        this.porciones = porciones;
     }
 
-    public DietaComida(Comida comida, Dieta dieta) {
+    public DietaComida(Comida comida, Dieta dieta, double porciones) {
         this.comida = comida;
         this.dieta = dieta;
+        this.porciones = porciones;
     }
 
     public int getId() {
@@ -46,6 +49,20 @@ public class DietaComida {
     public void setDieta(Dieta dieta) {
         this.dieta = dieta;
     }
+
+    public double getPorciones() {
+        return porciones;
+    }
+
+    public void setPorciones(double porciones) {
+        this.porciones = porciones;
+    }
+
+    public DietaComida(Comida comida, Dieta dieta) {
+        this.comida = comida;
+        this.dieta = dieta;
+    }
+    
 
     public DietaComida(int id, Comida comida, Dieta dieta, Horario horario) {
         this.id = id;

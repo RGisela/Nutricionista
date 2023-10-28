@@ -74,16 +74,19 @@ public class Nutricionista {
 //for(Comida dieta1 : dcd2.obtenerComidasEnDietaPorNombre("Dieta falsa")){
 //    System.out.println(dieta1.getNombre());
 //  
-   ComidaData cd = new ComidaData();
-   Comida comida = cd.buscarComida(1);
-   DietaData dd = new DietaData();
-   Dieta dieta = dd.buscarDieta(1);
-   DietaComida dc = new DietaComida(comida, dieta);
-   DietaComidaData dcd3 = new DietaComidaData();
-   dcd3.agregarDietaComida(dc);
-   
+//   ComidaData cd = new ComidaData();
+//   Comida comida = cd.buscarComida(1);
+//   DietaData dd = new DietaData();
+//   Dieta dieta = dd.buscarDieta(1);
+//   DietaComida dc = new DietaComida(comida, dieta);
+//   DietaComidaData dcd3 = new DietaComidaData();
+//   dcd3.agregarDietaComida(dc);
+//   
   
+   DietaComidaData dcd4 = new DietaComidaData();
+   dcd4.modificarComidaEnDieta("Cereales", "dieta vegana");
     }
+    
     
     }
 
