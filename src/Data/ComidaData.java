@@ -105,7 +105,6 @@ public class ComidaData {
                 String nombre = rs.getString("nombre");
                 String detalle = rs.getString("detalle");
                 int cantCalorias = rs.getInt("cantCalorias");
-
             }
             ps.close();
         } catch (SQLException ex) {
@@ -113,4 +112,27 @@ public class ComidaData {
         }
         return comidas;
     }
+    public List<Comida> buscarComidasConMenosCalorias(int maxCalorias) {
+    List<Comida> comidas = new ArrayList<>();
+    try {
+        String sql = "SELECT * FROM comida WHERE cantCalorias < ?";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, maxCalorias);
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            int id = rs.getInt("idComida");
+            String nombre = rs.getString("nombre");
+            String detalle = rs.getString("detalle");
+            int caloriasPorGramo = rs.getInt("cantCalorias");
+            
+            Comida comida = new Comida(nombre, detalle, caloriasPorGramo,id);
+            comidas.add(comida);
+        }
+    } catch (SQLException ex) {
+  JOptionPane.showMessageDialog(null, "Error al acceder a la tabla comida: " + ex.getMessage());
+    }
+    return comidas;
+}
+
 }

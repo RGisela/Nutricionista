@@ -211,7 +211,6 @@ public class DietaView extends javax.swing.JInternalFrame {
 private void cargaPaciente() {
         for (Paciente item : listaP) {
             jcbPaciente.addItem(item);
-           
         }
     }
 

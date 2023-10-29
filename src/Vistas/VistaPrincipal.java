@@ -30,6 +30,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jmiComida = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jmiCalorias = new javax.swing.JMenuItem();
         jmiGestionDieta = new javax.swing.JMenu();
         jmItemDieta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -70,6 +71,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jmiComida.add(jMenuItem2);
+
+        jmiCalorias.setText("Cantidad de calorias");
+        jmiCalorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCaloriasActionPerformed(evt);
+            }
+        });
+        jmiComida.add(jmiCalorias);
 
         jMenuBar1.add(jmiComida);
 
@@ -172,6 +181,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jmiCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCaloriasActionPerformed
+        ComidasCalorias calorias = new ComidasCalorias();
+        escritorio.add(calorias);
+        calorias.setVisible(true);
+    }//GEN-LAST:event_jmiCaloriasActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -218,6 +233,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jmItemDieta;
+    private javax.swing.JMenuItem jmiCalorias;
     private javax.swing.JMenu jmiComida;
     private javax.swing.JMenu jmiGestionDieta;
     // End of variables declaration//GEN-END:variables
