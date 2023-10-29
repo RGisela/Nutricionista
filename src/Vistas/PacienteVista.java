@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Data.Conexion;
@@ -24,11 +23,12 @@ import javax.swing.JOptionPane;
  */
 public class PacienteVista extends javax.swing.JFrame {
 
-    private PacienteData pacienteData= new PacienteData();
-    private Paciente pacienteActual= null;
+    private PacienteData pacienteData = new PacienteData();
+    private Paciente pacienteActual = null;
     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MMM-dd");
     SimpleDateFormat formate = new SimpleDateFormat("dd-MMM-yyyy");
     private Conexion con = null;
+
     public PacienteVista() {
         initComponents();
         setLocationRelativeTo(null);
@@ -289,7 +289,7 @@ public class PacienteVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jtNombreActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-      
+
         try {
             String nombre = jtNombre.getText();
             Integer dni = Integer.parseInt(jtDni.getText());
@@ -318,13 +318,13 @@ public class PacienteVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        
-        if(pacienteActual!=null){
+
+        if (pacienteActual != null) {
             pacienteData.eliminarPaciente(pacienteActual.getIdPaciente());
-            pacienteActual=null;
+            pacienteActual = null;
             limpiarCampos();
-        }else{
-        JOptionPane.showMessageDialog(this, "No hay un paciente selecionado");
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay un paciente selecionado");
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
@@ -340,13 +340,7 @@ public class PacienteVista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
-    
-    
-    
-    
-    
-    
-    
+
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
             Integer dni = Integer.parseInt(jtDni.getText());
@@ -359,9 +353,9 @@ public class PacienteVista extends javax.swing.JFrame {
                 // Obtener peso y  fecha del paciente
                 double pesoActual = pacienteData.obtenerPesoDelPaciente(pacienteActual.getIdPaciente());
                 LocalDate fecha = pacienteData.obtenerFechaDelPaciente(pacienteActual.getIdPaciente());
-                
+
                 jtPesoActual.setText(String.valueOf(pesoActual));
-                
+
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                 String formattedDate = dateFormat.format(Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 jdcFecha.setDate(dateFormat.parse(formattedDate));
@@ -378,9 +372,9 @@ public class PacienteVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-       limpiarCampos();
-       pacienteActual=null;
-        
+        limpiarCampos();
+        pacienteActual = null;
+
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -448,12 +442,14 @@ public class PacienteVista extends javax.swing.JFrame {
     private javax.swing.JTextField jtPesoActual;
     private javax.swing.JTextField jtTelefono;
     // End of variables declaration//GEN-END:variables
-private void limpiarCampos(){
- //cuando llamo a este metodo los campos quedan vacios
+private void limpiarCampos() {
+        //cuando llamo a este metodo los campos quedan vacios
 // jtId.setText("");
-jtNombre.setText("");
-jtDni.setText("");
-jtDomicilio.setText("");
-jtTelefono.setText("");
-}
+        jtNombre.setText("");
+        jtDni.setText("");
+        jtDomicilio.setText("");
+        jtTelefono.setText("");
+        jtPesoActual.setText("");
+        jdcFecha.setDate(null);
+    }
 }

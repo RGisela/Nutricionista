@@ -38,9 +38,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         jMenu3.setText("Paciente");
+        jMenu3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jMenuItem1.setText("Gestión Paciente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,12 +55,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jmiComida.setText("Comida");
+        jmiComida.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jmiComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiComidaActionPerformed(evt);
             }
         });
 
+        jMenuItem2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jMenuItem2.setText("Gestion Comida");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +74,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmiComida);
 
         jmiGestionDieta.setText("Dieta");
+        jmiGestionDieta.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
+        jmItemDieta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jmItemDieta.setText("Gestión Dieta");
         jmItemDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +88,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmiGestionDieta);
 
         jMenu2.setText("Administracion");
+        jMenu2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
+        jMenuItem4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jMenuItem4.setText("Manejo de DietaComida");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +102,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setText("Salir");
+        jMenu5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
+        jMenuItem5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jMenuItem5.setText("Salir");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,11 +121,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 391, Short.MAX_VALUE)
         );
 
         pack();
