@@ -22,9 +22,9 @@ public class PacienteData {
         con = Conexion.getConnection();
     }
 
-    public void darAlta(Paciente paciente, LocalDate fecha) {
-        String sql = "INSERT INTO paciente (nombre, dni, domicilio, telefono) VALUES (?,?,?,?,?)";
-        String sql2 = "INSERT INTO historial (idPaciente, fechaRegistro) VALUES (?,?,?)";
+    public void darAlta(Paciente paciente, double peso, LocalDate fecha) {
+        String sql = "INSERT INTO paciente (nombre, dni, domicilio, telefono, pesoActual) VALUES (?,?,?,?,?)";
+        String sql2 = "INSERT INTO historial (idPaciente, peso, fechaRegistro) VALUES (?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class PacienteData {
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono());
+            ps.setDouble(5, peso);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -43,6 +44,7 @@ public class PacienteData {
 
             PreparedStatement ps2 = con.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
             ps2.setInt(1, paciente.getIdPaciente());
+            ps2.setDouble(2, peso);
             ps2.setDate(3, Date.valueOf(fecha));
             ps2.executeUpdate();
 
@@ -162,5 +164,48 @@ public class PacienteData {
         }
         return paciente;
     }
+    
+    public void registrarCambioPeso(int idPaciente, double peso, LocalDate fechaRegistro) {
+    String sql = "INSERT INTO Historial (idPaciente, peso, fechaRegistro) VALUES (?, ?, ?)";
+    try {
+         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPaciente);
+        ps.setDouble(2, peso);
+        ps.setDate(3, Date.valueOf(fechaRegistro));
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
 
+public void actualizarPesoActual(int idPaciente, double nuevoPeso) {
+    String sql = "UPDATE Paciente SET pesoActual = ? WHERE idPaciente = ?";
+    try {
+         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDouble(1, nuevoPeso);
+        ps.setInt(2, idPaciente);
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+public List<Object[]> consultarHistorialPeso(int idPaciente) {
+    List<Object[]> historial = new ArrayList<>();
+    String sql = "SELECT peso, fechaRegistro FROM Historial WHERE idPaciente = ? ORDER BY fechaRegistro";
+    try{
+         PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPaciente);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            double peso = rs.getDouble("peso");
+            LocalDate fechaRegistro = rs.getDate("fechaRegistro").toLocalDate();
+            Object[] registro = {peso, fechaRegistro};
+            historial.add(registro);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return historial;
+}
 }

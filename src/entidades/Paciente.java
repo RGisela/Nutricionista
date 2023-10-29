@@ -7,6 +7,7 @@ public class Paciente {
     private int dni;
     private String domicilio;
     private String telefono;
+    private double pesoActual;
     private int idPaciente;
    
 
@@ -18,15 +19,16 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente, double pesoInicial, double pesoFinal) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual, int idPaciente) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.pesoActual = pesoActual;
         this.idPaciente = idPaciente;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -34,13 +36,14 @@ public class Paciente {
         
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.domicilio = domicilio;
-        this.telefono = telefono;
-        this.idPaciente = idPaciente;
+    public double getPesoActual() {
+        return pesoActual;
     }
+
+    public void setPesoActual(double pesoActual) {
+        this.pesoActual = pesoActual;
+    }
+
 
     public String getNombre() {
         return nombre;

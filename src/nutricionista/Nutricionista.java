@@ -84,7 +84,7 @@ public class Nutricionista {
 //   
   
    DietaComidaData dcd4 = new DietaComidaData();
-   dcd4.modificarComidaEnDieta("Cereales", "dieta vegana");
+   dcd4.modificarPorcionesDeComidaEnDieta("dieta vegana", "Ensalada", 2);
     }
     
     

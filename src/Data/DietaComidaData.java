@@ -199,5 +199,32 @@ public List<Comida> obtenerComidasEnDietaPorNombre(String nombreDieta) {
 
     return comidasEnDieta;
 }
-
+public void modificarPorcionesDeComidaEnDieta(String nombreDieta, String nombreComida, int nuevasPorciones) {
+    try {
+    String sql1 = "SELECT idDieta FROM dieta WHERE nombre = ?";
+    PreparedStatement psDieta = con.prepareStatement(sql1);
+    psDieta.setString(1, nombreDieta);
+    ResultSet rsDieta = psDieta.executeQuery();
+    if(rsDieta.next()){
+        int dietaId = rsDieta.getInt("idDieta");
+        //Luego obtenemos el id de la comida por su nombre 
+        String sqlComida = "SELECT idComida FROM comida WHERE nombre = ?";
+         PreparedStatement psComida = con.prepareStatement(sqlComida);
+         psDieta.setString(1, nombreComida);
+         ResultSet rsComida = psComida.executeQuery();
+         if(rsComida.next()){
+             int comidaId = rsComida.getInt("idComida");
+             //Finalmente actualizamos la porcion en la tabla DietaComida
+             String sqlDietaComida = "UPDATE dietacomida SET porciones = ? WHERE idDieta = ? AND idComida = ?";
+             PreparedStatement psDietaComida = con.prepareStatement(sqlDietaComida);
+             psDietaComida.setDouble(1, nuevasPorciones);
+             psDietaComida.setInt(2, dietaId);
+             psDietaComida.setInt(3, comidaId);
+             psDietaComida.executeUpdate();
+         }
+    }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al modificar porciones de comida en la dieta: " + ex.getMessage());
+    }
+}
 }
