@@ -2,13 +2,16 @@
 package entidades;
 
 
+
+
 public class Paciente {
     private String nombre;
     private int dni;
     private String domicilio;
     private String telefono;
-    private double pesoActual;
     private int idPaciente;
+    private double pesoActual;
+    
    
 
     public Paciente() {
@@ -19,22 +22,22 @@ public class Paciente {
         this.dni = dni;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual, int idPaciente) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono, int idPaciente) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.pesoActual = pesoActual;
         this.idPaciente = idPaciente;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
         
     }
+
 
     public double getPesoActual() {
         return pesoActual;

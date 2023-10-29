@@ -15,10 +15,8 @@ import java.time.LocalDate;
 
 public class Nutricionista {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    
+//    public static void main(String[] args) {
         // TODO code application logic here
         
         //AGREGA UN PACIENTE
@@ -83,9 +81,9 @@ public class Nutricionista {
 //   dcd3.agregarDietaComida(dc);
 //   
   
-   DietaComidaData dcd4 = new DietaComidaData();
-   dcd4.modificarPorcionesDeComidaEnDieta("dieta vegana", "Ensalada", 2);
-    }
+//   DietaComidaData dcd4 = new DietaComidaData();
+//   dcd4.modificarPorcionesDeComidaEnDieta("dieta vegana", "Ensalada", 2);
+//    }
     
     
     }

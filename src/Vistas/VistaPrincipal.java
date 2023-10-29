@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
 import javax.swing.JDesktopPane;
 
-/**
- *
- * @author gisela
- */
+
 public class VistaPrincipal extends javax.swing.JFrame {
 
    private JDesktopPane escritorio;
     
     public VistaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
         escritorio= new JDesktopPane();//para luego ser llamado
         this.setContentPane(escritorio);
         //escritorio.add(this.button1)//por si quiero que se vea el boton
@@ -116,11 +110,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 516, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         pack();

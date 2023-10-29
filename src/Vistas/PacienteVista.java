@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vistas;
 
 import Data.Conexion;
@@ -34,6 +30,7 @@ public class PacienteVista extends javax.swing.JFrame {
     private Conexion con = null;
     public PacienteVista() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -302,7 +299,7 @@ public class PacienteVista extends javax.swing.JFrame {
                 return;//sale del metodo
             }
             if (pacienteActual == null) {//si la variable paciente acual esta vacia, le pasa los datos que obtuvimos de la vista
-                pacienteActual = new Paciente(nombre, dni, domicilio, telefono, pesoActual);
+                pacienteActual = new Paciente(nombre, dni, domicilio, telefono);
                 String fecha = formato.format(jdcFecha.getDate());
                 DateTimeFormatter format = new DateTimeFormatterBuilder().append(DateTimeFormatter.ofPattern("yyyy-MMM-dd")).toFormatter();
                 LocalDate fecha1 = LocalDate.parse(fecha, format);
