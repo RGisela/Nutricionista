@@ -94,7 +94,7 @@ public class PacienteData {
 
    public List<Paciente> listarPacientes() {
     List<Paciente> pacientes = new ArrayList<>();
-    String sql = "SELECT nombre,dni FROM paciente";
+    String sql = "SELECT nombre,dni,pesoActual FROM paciente";
     try {
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -192,7 +192,7 @@ public void actualizarPesoActual(int idPaciente, double nuevoPeso) {
 
 public List<Object[]> consultarHistorialPeso(int idPaciente) {
     List<Object[]> historial = new ArrayList<>();
-    String sql = "SELECT peso, fechaRegistro FROM Historial WHERE idPaciente = ? ORDER BY fechaRegistro";
+    String sql = "SELECT pesoActual, fechaRegistro FROM Historial WHERE idPaciente = ? ORDER BY fechaRegistro";
     try{
          PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, idPaciente);
@@ -207,5 +207,48 @@ public List<Object[]> consultarHistorialPeso(int idPaciente) {
         ex.printStackTrace();
     }
     return historial;
+}
+
+public double obtenerPesoDelPaciente(int idPaciente) {
+    String sql = "SELECT pesoActual FROM paciente WHERE idPaciente = ?";
+    double pesoActual = 0.0; // Inicializa el peso en 0.0 en caso de que no se encuentre el paciente
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPaciente);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            pesoActual = rs.getDouble("pesoActual");
+        } else {
+            JOptionPane.showMessageDialog(null, "Paciente no encontrado o sin peso registrado");
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente: " + ex.getMessage());
+    }
+
+    return pesoActual;
+}
+    public LocalDate obtenerFechaDelPaciente(int idPaciente) {
+    String sql = "SELECT fechaRegistro FROM historial WHERE idPaciente = ?";
+    LocalDate fechaPaciente = null;
+
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idPaciente);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            fechaPaciente = rs.getDate("fechaRegistro").toLocalDate();
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al obtener la fecha del paciente: " + ex.getMessage());
+    }
+
+    return fechaPaciente;
 }
 }

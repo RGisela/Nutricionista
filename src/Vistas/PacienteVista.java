@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -339,20 +340,40 @@ public class PacienteVista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        try{
-        Integer dni = Integer.parseInt(jtDni.getText());
-        pacienteActual=pacienteData.buscarPacientePorDni(dni);
-        if(pacienteActual!=null){
-        jtNombre.setText(pacienteActual.getNombre());
-        jtDomicilio.setText(pacienteActual.getDomicilio());
-        jtTelefono.setText(pacienteActual.getTelefono());
-        //jtDni.setText(pacienteActual.getDni()+"");//O podria ponerle String.ValueOf
-        /* convierte el valor del entero (dni) a una cadena (String) 
+        try {
+            Integer dni = Integer.parseInt(jtDni.getText());
+            pacienteActual = pacienteData.buscarPacientePorDni(dni);
+
+            if (pacienteActual != null) {
+                jtNombre.setText(pacienteActual.getNombre());
+                jtDomicilio.setText(pacienteActual.getDomicilio());
+                jtTelefono.setText(pacienteActual.getTelefono());
+                // Obtener peso y  fecha del paciente
+                double pesoActual = pacienteData.obtenerPesoDelPaciente(pacienteActual.getIdPaciente());
+                LocalDate fecha = pacienteData.obtenerFechaDelPaciente(pacienteActual.getIdPaciente());
+                
+                jtPesoActual.setText(String.valueOf(pesoActual));
+                
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                String formattedDate = dateFormat.format(Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                jdcFecha.setDate(dateFormat.parse(formattedDate));
+
+                //jtDni.setText(pacienteActual.getDni()+"");//O podria ponerle String.ValueOf
+                /* convierte el valor del entero (dni) a una cadena (String) 
         para que sea compatible con el método setText del campo de texto jtDni*/
-        }
-        }catch(NumberFormatException ex){
-        JOptionPane.showMessageDialog(this,"debe ingresar enteros"+ ex.getMessage());
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "debe ingresar enteros");
+        } catch (ParseException ex) {
+            Logger.getLogger(PacienteVista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 

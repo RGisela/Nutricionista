@@ -93,4 +93,8 @@ public class Paciente {
     public String toString() {
         return nombre + "-" + dni;
     }
+
+    public void setPeso(double aDouble) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
