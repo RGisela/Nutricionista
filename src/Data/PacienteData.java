@@ -82,22 +82,26 @@ public class PacienteData {
     
     //modificar paciente
 
-    public void modificarPaciente(Paciente paciente) {
-
-        String sql = "UPDATE paciente SET nombre = ?, dni = ?, domicilio = ?, telefono = ? WHERE idPaciente = ?";
+    public void modificarPaciente(Paciente paciente, double nuevoPeso, LocalDate nuevaFecha) {
+        String sql = "UPDATE paciente SET nombre = ?, dni = ?, domicilio = ?, telefono = ?, pesoActual = ? WHERE idPaciente = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, paciente.getNombre());
             ps.setInt(2, paciente.getDni());
             ps.setString(3, paciente.getDomicilio());
             ps.setString(4, paciente.getTelefono());
-            ps.setInt(5, paciente.getIdPaciente());
+            ps.setDouble(5, nuevoPeso); // Actualización del peso
+            ps.setInt(6, paciente.getIdPaciente());
+
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Paciente modificado");
+
+                // Llamar al método registrarCambioPeso para guardar el nuevo peso y la fecha
+                registrarCambioPeso(paciente.getIdPaciente(), nuevoPeso, nuevaFecha);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paciente: " + ex.getMessage());
         }
     }
 
@@ -149,29 +153,27 @@ public class PacienteData {
     }
 
     public Paciente buscarPacientePorDni(int dni) {
-        String sql = "SELECT * FROM paciente WHERE dni = ?";
-        Paciente paciente = null;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, dni);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                paciente = new Paciente();
-                paciente.setIdPaciente(rs.getInt("idPaciente"));
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setTelefono(rs.getString("telefono"));
-            } else {
-                JOptionPane.showMessageDialog(null, "Ese paciente no existe");
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + ex.getMessage());
+    String sql = "SELECT * FROM paciente WHERE dni = ?";
+    Paciente paciente = null;
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, dni);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            paciente = new Paciente();
+            paciente.setIdPaciente(rs.getInt("idPaciente"));
+            paciente.setNombre(rs.getString("nombre"));
+            paciente.setDni(rs.getInt("dni"));
+            paciente.setDomicilio(rs.getString("domicilio"));
+            paciente.setTelefono(rs.getString("telefono"));
         }
-        return paciente;
+        // No se muestra ningún mensaje si el paciente no existe
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al buscar pacientes: " + ex.getMessage());
     }
+    return paciente;
+}
 
     public void registrarCambioPeso(int idPaciente, double peso, LocalDate fechaRegistro) {
         String sql = "INSERT INTO Historial (idPaciente, peso, fechaRegistro) VALUES (?, ?, ?)";
