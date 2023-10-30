@@ -34,14 +34,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmiGestionDieta = new javax.swing.JMenu();
         jmItemDieta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jManejoDC = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
-        jMenu3.setText("Paciente");
+        jMenu3.setText("Paciente    ");
         jMenu3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -55,7 +53,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jmiComida.setText("Comida");
+        jmiComida.setText("Comida    ");
+        jmiComida.setActionCommand("Comida    ");
         jmiComida.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jmiComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +71,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         jmiComida.add(jMenuItem2);
 
+        jmiCalorias.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jmiCalorias.setText("Cantidad de calorias");
         jmiCalorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmiComida);
 
-        jmiGestionDieta.setText("Dieta");
+        jmiGestionDieta.setText("Dieta    ");
         jmiGestionDieta.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         jmItemDieta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -99,30 +99,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Administracion");
         jMenu2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem4.setText("Manejo de DietaComida");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jManejoDC.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jManejoDC.setText("Manejo de DietaComida");
+        jManejoDC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jManejoDCActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(jManejoDC);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu5.setText("Salir");
-        jMenu5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-
-        jMenuItem5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jMenuItem5.setText("Salir");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,11 +116,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGap(0, 518, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
 
         pack();
@@ -161,11 +147,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         dieta.setVisible(true);
     }//GEN-LAST:event_jmItemDietaActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jmiComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiComidaActionPerformed
         
 //        ComidaView comida = new ComidaView();
@@ -173,13 +154,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 //        comida.setVisible(true);
     }//GEN-LAST:event_jmiComidaActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jManejoDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jManejoDCActionPerformed
         // TODO add your handling code here:
         DietaComidaView dietaComida = new DietaComidaView();
         escritorio.add(dietaComida);//agrego la ventana al escritorio(JDesktopPane)
         dietaComida.setVisible(true);
         
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jManejoDCActionPerformed
 
     private void jmiCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCaloriasActionPerformed
         ComidasCalorias calorias = new ComidasCalorias();
@@ -224,14 +205,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jManejoDC;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jmItemDieta;
     private javax.swing.JMenuItem jmiCalorias;
     private javax.swing.JMenu jmiComida;
