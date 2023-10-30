@@ -94,24 +94,30 @@ public class ComidaData {
         return comida;
     }
 
-    public List<Comida> listarComidas() {
-        List<Comida> comidas = new ArrayList<>();
-        String sql = "SELECT * FROM comidas";
-        try {
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int idComida = rs.getInt("idComida");
-                String nombre = rs.getString("nombre");
-                String detalle = rs.getString("detalle");
-                int cantCalorias = rs.getInt("cantCalorias");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al listar las comidas: " + ex.getMessage());
+public List<Comida> listarComidas() {
+    List<Comida> comidas = new ArrayList<>();
+    String sql = "SELECT * FROM comida";
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int idComida = rs.getInt("idComida");
+            String nombre = rs.getString("nombre");
+            String detalle = rs.getString("detalle");
+            int cantCalorias = rs.getInt("cantCalorias");
+
+            // Crea una instancia de Comida y agrégala a la lista
+            Comida comida = new Comida(nombre, detalle, cantCalorias,idComida);
+            comidas.add(comida);
         }
-        return comidas;
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al listar las comidas: " + ex.getMessage());
+        ex.printStackTrace();
     }
+    return comidas;
+}
+
     public List<Comida> buscarComidasConMenosCalorias(int maxCalorias) {
     List<Comida> comidas = new ArrayList<>();
     try {

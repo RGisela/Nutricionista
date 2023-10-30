@@ -4,3 +4,7 @@
 /nbproject/private/
 
 build.xml
+src/Vistas/DietaComidaView.form
+src/Vistas/DietaComidaView.java
+src/Vistas/VistaPrincipal.form
+src/Vistas/VistaPrincipal.java

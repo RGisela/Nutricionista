@@ -10,6 +10,7 @@ public class DietaComida {
     private Dieta dieta;
     private double porciones;
     private Horario horario;
+    
     public DietaComida() {
     }
 
